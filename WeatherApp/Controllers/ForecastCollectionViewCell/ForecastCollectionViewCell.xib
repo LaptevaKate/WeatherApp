@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="ForecastCollectionViewCell" customModule="WeatherApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0JZ-fI-m3d">
+                        <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WaE-ZF-FNw">
+                                <rect key="frame" x="10" y="15" width="80" height="19"/>
+                                <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wind speed(m/s)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="frf-TA-dxC">
+                                <rect key="frame" x="10" y="39" width="80" height="11.5"/>
+                                <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="10"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pressure (mb)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HvQ-7a-PON">
+                                <rect key="frame" x="10" y="55.5" width="80" height="11.5"/>
+                                <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="10"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cloud coverage(%)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9a4-O6-jnm">
+                                <rect key="frame" x="10" y="72" width="80" height="11.5"/>
+                                <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="10"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="WaE-ZF-FNw" firstAttribute="leading" secondItem="0JZ-fI-m3d" secondAttribute="leading" constant="10" id="I4L-G7-C3k"/>
+                            <constraint firstAttribute="trailing" secondItem="HvQ-7a-PON" secondAttribute="trailing" constant="10" id="IwA-16-cfy"/>
+                            <constraint firstItem="HvQ-7a-PON" firstAttribute="top" secondItem="frf-TA-dxC" secondAttribute="bottom" constant="5" id="KUV-g7-yps"/>
+                            <constraint firstItem="frf-TA-dxC" firstAttribute="leading" secondItem="0JZ-fI-m3d" secondAttribute="leading" constant="10" id="Rke-tB-a1N"/>
+                            <constraint firstItem="WaE-ZF-FNw" firstAttribute="top" secondItem="0JZ-fI-m3d" secondAttribute="top" constant="15" id="UG3-yl-ptp"/>
+                            <constraint firstItem="9a4-O6-jnm" firstAttribute="leading" secondItem="0JZ-fI-m3d" secondAttribute="leading" constant="10" id="Yyk-pW-9Nn"/>
+                            <constraint firstItem="HvQ-7a-PON" firstAttribute="leading" secondItem="0JZ-fI-m3d" secondAttribute="leading" constant="10" id="bOt-HO-0QB"/>
+                            <constraint firstAttribute="trailing" secondItem="9a4-O6-jnm" secondAttribute="trailing" constant="10" id="buH-Ac-UrR"/>
+                            <constraint firstAttribute="trailing" secondItem="frf-TA-dxC" secondAttribute="trailing" constant="10" id="jHL-tN-srT"/>
+                            <constraint firstItem="9a4-O6-jnm" firstAttribute="top" secondItem="HvQ-7a-PON" secondAttribute="bottom" constant="5" id="lKi-Qh-2Tx"/>
+                            <constraint firstItem="frf-TA-dxC" firstAttribute="top" secondItem="WaE-ZF-FNw" secondAttribute="bottom" constant="5" id="m9V-17-cbq"/>
+                            <constraint firstAttribute="trailing" secondItem="WaE-ZF-FNw" secondAttribute="trailing" constant="10" id="zET-gn-pjv"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="0JZ-fI-m3d" secondAttribute="bottom" id="WTc-YJ-bs6"/>
+                <constraint firstItem="0JZ-fI-m3d" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="cMf-PJ-R0q"/>
+                <constraint firstItem="0JZ-fI-m3d" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="eXg-QP-fmf"/>
+                <constraint firstAttribute="trailing" secondItem="0JZ-fI-m3d" secondAttribute="trailing" id="sq7-mb-260"/>
+            </constraints>
+            <connections>
+                <outlet property="cloudCoverageLabel" destination="9a4-O6-jnm" id="1si-4c-LBd"/>
+                <outlet property="dateLabel" destination="WaE-ZF-FNw" id="eJd-VQ-FKm"/>
+                <outlet property="forecastView" destination="0JZ-fI-m3d" id="O4Z-at-pxW"/>
+                <outlet property="pressureLabel" destination="HvQ-7a-PON" id="w5M-Of-MBy"/>
+                <outlet property="windSpeedLabel" destination="frf-TA-dxC" id="3k2-KE-nbP"/>
+            </connections>
+            <point key="canvasLocation" x="137.68115942028987" y="99.776785714285708"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
