@@ -7,9 +7,9 @@
 
 import UIKit
 
-struct WeatherData: Codable {
+struct WeatherModel: Codable {
     let cityName: String
-    let data: [Data]
+    let data: [WeatherData]
     
     enum CodingKeys: String, CodingKey {
         case cityName = "city_name"
@@ -17,17 +17,17 @@ struct WeatherData: Codable {
     }
 }
 
-struct Data: Codable {
-    let datetime: Date
+struct WeatherData: Codable {
+    let date: String
     let temp: Double
     let windSpeed: Double
     let pressure: Double
-    let cloudsCoverage: Double
-    let precipitation:Double
-    let weather: [Weather]
+    let cloudsCoverage: Int
+    let precipitation: Int
+    let weather: Weather
     
     enum CodingKeys: String, CodingKey {
-        case datetime = "datetime"
+        case date = "valid_date"
         case temp = "temp"
         case windSpeed = "wind_spd"
         case pressure = "pres"
@@ -39,6 +39,6 @@ struct Data: Codable {
 
 struct Weather: Codable {
     let icon: String
-    let code: String
+    let code: Int
     let description: String
 }

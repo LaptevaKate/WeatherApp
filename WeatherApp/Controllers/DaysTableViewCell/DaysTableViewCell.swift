@@ -10,15 +10,17 @@ import UIKit
 class DaysTableViewCell: UITableViewCell {
 
     @IBOutlet weak var daysTableViewCell: UIView!
-    @IBOutlet weak var dateLabelOfDaysTableViewCell: UILabel!
-    @IBOutlet weak var imageViewOfDaysTableViewCell: UIImageView!
-    @IBOutlet weak var degreesLabelOfDaysTableViewCell: UILabel!
-    @IBOutlet weak var descriptionLabelOfTableViewCell: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var iconsImageView: UIImageView!
+    @IBOutlet weak var degreesLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
     
-
+    override var reuseIdentifier: String? {
+        return "DaysTableViewCell"
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

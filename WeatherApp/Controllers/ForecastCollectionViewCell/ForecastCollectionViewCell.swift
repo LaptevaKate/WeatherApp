@@ -16,7 +16,9 @@ class ForecastCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var pressureLabel: UILabel!
     @IBOutlet weak var cloudCoverageLabel: UILabel!
     
-    
+    override var reuseIdentifier: String? {
+        return "ForecastCollectionViewCell"
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
