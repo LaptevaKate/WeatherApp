@@ -25,7 +25,7 @@ struct WeatherManager {
     }
     
     func fetchWeather(latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
-        let urlString = "\(weatherURL)&lat=\(latitude)&lon=\(longitude)"
+        let urlString = "\(weatherURL)&lat=\(latitude)&lon=\(longitude)&key=\(apiKey)"
         performRequest(with: urlString)
     }
     
@@ -51,12 +51,6 @@ struct WeatherManager {
         let decoder = JSONDecoder()
         do {
             let decodedData = try decoder.decode(WeatherModel.self, from: weatherData)
-            
-            let dateFormatter = DateFormatter()
-            dateFormatter.locale = Locale.current
-            dateFormatter.dateFormat = "yyyy.MM.dd"
-            dateFormatter.timeZone = TimeZone.current
-            let date = dateFormatter.date(from: decodedData.data[0].date)
           
             return decodedData
             

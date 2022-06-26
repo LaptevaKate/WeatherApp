@@ -16,15 +16,12 @@ class ForecastCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var pressureLabel: UILabel!
     @IBOutlet weak var cloudCoverageLabel: UILabel!
     
-    override var reuseIdentifier: String? {
-        return "ForecastCollectionViewCell"
-    }
+    static let reuseIdentifier = "ForecastCollectionViewCell"
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        forecastView.layer.cornerRadius = 20
-        forecastView.layer.borderWidth = 0.5
-        forecastView.layer.borderColor = UIColor.black.withAlphaComponent(0.5).cgColor
+    func configure(dateString: String, windString: String, pressureString: String, cloudString: String) {
+        dateLabel.text = dateString
+        windSpeedLabel.text = windString
+        pressureLabel.text = pressureString
+        cloudCoverageLabel.text = cloudString
     }
-
 }

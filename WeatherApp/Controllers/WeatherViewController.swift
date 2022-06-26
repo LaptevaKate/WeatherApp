@@ -11,7 +11,7 @@ import CoreLocation
 
 
 class WeatherViewController: UIViewController {
-
+    
     @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var ProbabilityOfPrecipitationLabel: UILabel!
@@ -19,14 +19,21 @@ class WeatherViewController: UIViewController {
     @IBOutlet weak var background: UIImageView!
     @IBOutlet weak var mapView: MKMapView!
     
-    @IBOutlet weak var dailyForecastTableView: UITableView!
-    @IBOutlet weak var forecastCollectionView: UICollectionView!
- 
-    var forecastCollectionViewCell = ForecastCollectionViewCell()
-    var daysWeatherTableViewCell = DaysTableViewCell()
+    @IBOutlet weak var dailyForecastTableView: UITableView! {
+        didSet {
+            dailyForecastTableView.register(UINib(nibName: String(describing: DaysTableViewCell.self), bundle: nil), forCellReuseIdentifier: DaysTableViewCell.reuseIdentifier)
+        }
+    }
+    @IBOutlet weak var forecastCollectionView: UICollectionView! {
+        didSet {
+            forecastCollectionView.register(UINib(nibName: String(describing: ForecastCollectionViewCell.self), bundle: nil), forCellWithReuseIdentifier: ForecastCollectionViewCell.reuseIdentifier)
+        }
+    }
+    
     
     let locationManager = CLLocationManager()
-    let weatherManager = WeatherManager()
+    var weatherManager = WeatherManager()
+    var weatherModel: WeatherModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,11 +42,72 @@ class WeatherViewController: UIViewController {
         locationManager.requestWhenInUseAuthorization()
         locationManager.requestLocation()
         
+        dailyForecastTableView.dataSource = self
+        dailyForecastTableView.delegate = self
+        
+        forecastCollectionView.dataSource = self
+        forecastCollectionView.delegate = self
+        
         searchTextField.delegate = self
+        
+        weatherManager.delegate = self
         weatherManager.fetchWeather(cityName: "Minsk")
-    
+        
     }
 }
+
+//MARK: - TableView Delegate & DataSource
+extension WeatherViewController: UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegateFlowLayout {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        guard let data = weatherModel?.data else { return 1 }
+        return data.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: DaysTableViewCell.reuseIdentifier) as? DaysTableViewCell,
+              let data = weatherModel?.data[indexPath.row] else { return UITableViewCell() }
+        
+        cell.configure(dateString: data.formattedFullDate,
+                       image: data.weather.weatherImage,
+                       tempString: String(data.temp),
+                       description: data.weather.description)
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 64
+    }
+    
+    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        return nil
+    }
+}
+
+//MARK: - CollectionView Delegate & DataSource, FlowLayout
+extension WeatherViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        guard let data = weatherModel?.data else { return 1 }
+        return data.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ForecastCollectionViewCell.reuseIdentifier, for: indexPath) as! ForecastCollectionViewCell
+        
+        if let data = weatherModel?.data[indexPath.row]  {
+            cell.configure(dateString: data.formattedFullDate,
+                           windString: String(data.windSpeed),
+                           pressureString: String(data.pressure),
+                           cloudString: String(data.cloudsCoverage))
+        }
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 100, height: 100)
+    }
+}
+
 //MARK: - CLLocationManagerDelegate
 
 
@@ -48,14 +116,14 @@ extension WeatherViewController: CLLocationManagerDelegate {
     @IBAction func locationPressed(_ sender: UIButton) {
         locationManager.requestLocation()
     }
-
+    
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.last {
             locationManager.stopUpdatingLocation()
             let lat = location.coordinate.latitude
             let lon = location.coordinate.longitude
-//            weatherManager.fetchWeather(latitude: lat, longitude: lon)
+            weatherManager.fetchWeather(latitude: lat, longitude: lon)
         }
     }
     
@@ -90,11 +158,27 @@ extension WeatherViewController: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         
         if let city = searchTextField.text {
-//            weatherManager.fetchWeather(cityName: city)
+            weatherManager.fetchWeather(cityName: city)
         }
         
         searchTextField.text = ""
         
     }
 }
+//MARK: - WeatherManagerDelegate
 
+
+extension WeatherViewController: WeatherManagerDelegate {
+    
+    func didUpdateWeather(_ weatherManager: WeatherManager, weather: WeatherModel) {
+        DispatchQueue.main.async {
+            self.weatherModel = weather
+            self.dailyForecastTableView.reloadData()
+            self.forecastCollectionView.reloadData()
+        }
+    }
+    
+    func didFailWithError(error: Error) {
+        print(error)
+    }
+}

@@ -35,10 +35,33 @@ struct WeatherData: Codable {
         case precipitation = "pop"
         case weather
     }
+    
+    var formattedDate: Date? {
+        DateFormatter.fulldate.date(from: date)
+    }
+    
+    var day: Int {
+        formattedDate?.day ?? 0
+    }
+    
+    var month: String {
+        formattedDate?.monthName() ?? ""
+    }
+    
+    var formattedFullDate: String {
+        "\(day) \(month)"
+    }
 }
 
 struct Weather: Codable {
     let icon: String
     let code: Int
     let description: String
+    
+    var weatherImage: UIImage? {
+        switch icon {
+        default:
+            return UIImage(named: "\(icon)")
+        }
+    }
 }
