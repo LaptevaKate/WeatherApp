@@ -23,7 +23,7 @@
                         <constraints>
                             <constraint firstAttribute="width" constant="50" id="hF9-Zx-fSv"/>
                         </constraints>
-                        <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="17"/>
+                        <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="18"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -35,15 +35,15 @@
                             <constraint firstAttribute="width" constant="40" id="xif-bA-Z9j"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Degrees" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Dr-ay-yEH">
-                        <rect key="frame" x="140" y="5" width="80" height="34"/>
-                        <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="15"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Degrees" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Dr-ay-yEH">
+                        <rect key="frame" x="140" y="5" width="66" height="34"/>
+                        <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="20"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vON-QD-tri">
-                        <rect key="frame" x="240" y="5" width="70" height="34"/>
-                        <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="15"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vON-QD-tri">
+                        <rect key="frame" x="216" y="5" width="94" height="34"/>
+                        <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="20"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -52,7 +52,7 @@
                     <constraint firstItem="6Dr-ay-yEH" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="4bd-kU-PYT"/>
                     <constraint firstAttribute="bottom" secondItem="vON-QD-tri" secondAttribute="bottom" constant="5" id="5Fd-II-84s"/>
                     <constraint firstItem="6Dr-ay-yEH" firstAttribute="leading" secondItem="rRU-rZ-nyi" secondAttribute="trailing" constant="10" id="Akj-nh-PR3"/>
-                    <constraint firstItem="vON-QD-tri" firstAttribute="leading" secondItem="6Dr-ay-yEH" secondAttribute="trailing" constant="20" id="OuT-3f-jXm"/>
+                    <constraint firstItem="vON-QD-tri" firstAttribute="leading" secondItem="6Dr-ay-yEH" secondAttribute="trailing" constant="10" id="OuT-3f-jXm"/>
                     <constraint firstItem="rRU-rZ-nyi" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Spy-iN-jO9"/>
                     <constraint firstAttribute="bottom" secondItem="zNf-qQ-mzl" secondAttribute="bottom" constant="5" id="aae-nd-Cx4"/>
                     <constraint firstItem="vON-QD-tri" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="bMR-Uf-vrv"/>

@@ -14,7 +14,7 @@ class WeatherViewController: UIViewController {
     
     @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var cityLabel: UILabel!
-    @IBOutlet weak var ProbabilityOfPrecipitationLabel: UILabel!
+    @IBOutlet weak var probabilityOfPrecipitationLabel: UILabel!
     @IBOutlet weak var temperatureLabel: UILabel!
     @IBOutlet weak var background: UIImageView!
     @IBOutlet weak var mapView: MKMapView!
@@ -35,6 +35,7 @@ class WeatherViewController: UIViewController {
     var weatherManager = WeatherManager()
     var weatherModel: WeatherModel?
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -51,9 +52,23 @@ class WeatherViewController: UIViewController {
         searchTextField.delegate = self
         
         weatherManager.delegate = self
-        weatherManager.fetchWeather(cityName: "Minsk")
         
+//        updateInterfaceWith(weather: CurrentWeather)
+//
+//        if CLLocationManager.locationServicesEnabled() {
+//            locationManager.requestLocation()
+//        } else {
+//            self.weatherManager.fetchWeather(cityName: "Minsk")
+//        }
     }
+    
+//    func updateInterfaceWith(weather: CurrentWeather) {
+//        DispatchQueue.main.async {
+//            self.cityLabel.text = weather.cityName
+//            self.temperatureLabel.text = weather.temperatureString
+//            self.probabilityOfPrecipitationLabel.text = weather.precipitationString
+//        }
+//    }
 }
 
 //MARK: - TableView Delegate & DataSource
@@ -96,15 +111,15 @@ extension WeatherViewController: UICollectionViewDelegate, UICollectionViewDataS
         
         if let data = weatherModel?.data[indexPath.row]  {
             cell.configure(dateString: data.formattedFullDate,
-                           windString: String(data.windSpeed),
-                           pressureString: String(data.pressure),
-                           cloudString: String(data.cloudsCoverage))
+                           windString: "Wind speed: \(data.windSpeed)m/s",
+                           pressureString: "Pressure: \(data.pressure)mb",
+                           cloudString: "Cloud coverage: \(data.cloudsCoverage)%")
         }
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 100, height: 100)
+        return CGSize(width: 150, height: 100)
     }
 }
 
@@ -160,9 +175,7 @@ extension WeatherViewController: UITextFieldDelegate {
         if let city = searchTextField.text {
             weatherManager.fetchWeather(cityName: city)
         }
-        
         searchTextField.text = ""
-        
     }
 }
 //MARK: - WeatherManagerDelegate
@@ -179,6 +192,6 @@ extension WeatherViewController: WeatherManagerDelegate {
     }
     
     func didFailWithError(error: Error) {
-        print(error)
+        print(error.localizedDescription)
     }
 }
