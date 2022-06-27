@@ -38,15 +38,18 @@ class WeatherViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        weatherManager.delegate = self
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
+        
         if CLLocationManager.locationServicesEnabled() {
-            locationManager.requestLocation()
-        } else {
-            self.weatherManager.fetchWeather(cityName: "Minsk")
+            switch CLLocationManager.authorizationStatus() {
+            case .authorizedAlways, .authorizedWhenInUse:
+                locationManager.requestLocation()
+            default:
+                self.weatherManager.fetchWeather(cityName: "Minsk")
+            }
         }
-
         
         dailyForecastTableView.dataSource = self
         dailyForecastTableView.delegate = self
@@ -55,8 +58,6 @@ class WeatherViewController: UIViewController {
         forecastCollectionView.delegate = self
         
         searchTextField.delegate = self
-        
-        weatherManager.delegate = self
         
     }
 }
@@ -69,13 +70,14 @@ extension WeatherViewController: UITableViewDelegate, UITableViewDataSource, UIC
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: DaysTableViewCell.reuseIdentifier) as? DaysTableViewCell,
-              let data = weatherModel?.data[indexPath.row] else { return UITableViewCell() }
-        
-        cell.configure(dateString: data.formattedFullDate,
-                       image: data.weather.weatherImage,
-                       tempString: String(data.temp),
-                       description: data.weather.description)
+        let cell = tableView.dequeueReusableCell(withIdentifier: DaysTableViewCell.reuseIdentifier) as! DaysTableViewCell
+        if let data = weatherModel?.data[indexPath.row] {
+            
+            cell.configure(dateString: data.formattedFullDate,
+                           image: data.weather.weatherImage,
+                           tempString: String(data.temp),
+                           description: data.weather.description)
+        }
         return cell
     }
     
@@ -101,8 +103,8 @@ extension WeatherViewController: UICollectionViewDelegate, UICollectionViewDataS
         
         if let data = weatherModel?.data[indexPath.row]  {
             cell.configure(dateString: data.formattedFullDate,
-                           windString: "Wind speed: \(data.windSpeed)m/s",
-                           pressureString: "Pressure: \(data.pressure)mb",
+                           windString: "Wind speed: \(data.windSpeed) m/s",
+                           pressureString: "Pressure: \(data.pressure) mb",
                            cloudString: "Cloud coverage: \(data.cloudsCoverage)%")
         }
         return cell
