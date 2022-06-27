@@ -36,6 +36,14 @@ struct WeatherData: Codable {
         case weather
     }
     
+    var precipitationString: String {
+        return String(precipitation)
+    }
+    var temperatureString: String {
+        return String(format: "%.0f", temp.rounded())
+    }
+    
+    
     var formattedDate: Date? {
         DateFormatter.fulldate.date(from: date)
     }

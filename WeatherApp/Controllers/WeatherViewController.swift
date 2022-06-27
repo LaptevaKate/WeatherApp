@@ -30,8 +30,8 @@ class WeatherViewController: UIViewController {
         }
     }
     
-    
     let locationManager = CLLocationManager()
+    
     var weatherManager = WeatherManager()
     var weatherModel: WeatherModel?
     
@@ -41,7 +41,12 @@ class WeatherViewController: UIViewController {
         
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
-        locationManager.requestLocation()
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.requestLocation()
+        } else {
+            self.weatherManager.fetchWeather(cityName: "Minsk")
+        }
+
         
         dailyForecastTableView.dataSource = self
         dailyForecastTableView.delegate = self
@@ -53,22 +58,7 @@ class WeatherViewController: UIViewController {
         
         weatherManager.delegate = self
         
-//        updateInterfaceWith(weather: CurrentWeather)
-//
-//        if CLLocationManager.locationServicesEnabled() {
-//            locationManager.requestLocation()
-//        } else {
-//            self.weatherManager.fetchWeather(cityName: "Minsk")
-//        }
     }
-    
-//    func updateInterfaceWith(weather: CurrentWeather) {
-//        DispatchQueue.main.async {
-//            self.cityLabel.text = weather.cityName
-//            self.temperatureLabel.text = weather.temperatureString
-//            self.probabilityOfPrecipitationLabel.text = weather.precipitationString
-//        }
-//    }
 }
 
 //MARK: - TableView Delegate & DataSource
@@ -188,6 +178,10 @@ extension WeatherViewController: WeatherManagerDelegate {
             self.weatherModel = weather
             self.dailyForecastTableView.reloadData()
             self.forecastCollectionView.reloadData()
+            
+            self.cityLabel.text = weather.cityName
+            self.temperatureLabel.text = weather.data[1].temperatureString
+            self.probabilityOfPrecipitationLabel.text = "Probability Of Precipitation \( weather.data[5].precipitationString) %"
         }
     }
     
