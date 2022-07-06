@@ -1,0 +1,18 @@
+
+/* Class = "UILabel"; text = "C"; ObjectID = "Hja-wl-e8U"; */
+"Hja-wl-e8U.text" = "C";
+
+/* Class = "UILabel"; text = "CityName"; ObjectID = "MLI-Bg-ysY"; */
+"MLI-Bg-ysY.text" = "Город";
+
+/* Class = "UILabel"; text = "°"; ObjectID = "YQK-ll-n5f"; */
+"YQK-ll-n5f.text" = "°";
+
+/* Class = "UILabel"; text = "19"; ObjectID = "Ywy-vv-5sj"; */
+"Ywy-vv-5sj.text" = "19";
+
+/* Class = "UITextField"; placeholder = "Search"; ObjectID = "ZGq-ah-1VJ"; */
+"ZGq-ah-1VJ.placeholder" = "Поиск";
+
+/* Class = "UILabel"; text = "Probability of Precipitation %"; ObjectID = "edG-hG-1eM"; */
+"edG-hG-1eM.text" = "Вероятность выпадения осадков %";

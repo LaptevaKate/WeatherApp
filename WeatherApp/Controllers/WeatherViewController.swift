@@ -21,12 +21,14 @@ class WeatherViewController: UIViewController {
     
     @IBOutlet weak var dailyForecastTableView: UITableView! {
         didSet {
-            dailyForecastTableView.register(UINib(nibName: String(describing: DaysTableViewCell.self), bundle: nil), forCellReuseIdentifier: DaysTableViewCell.reuseIdentifier)
+            dailyForecastTableView.register(UINib(nibName: String(describing: DaysTableViewCell.self),
+                                                  bundle: nil), forCellReuseIdentifier: DaysTableViewCell.reuseIdentifier)
         }
     }
     @IBOutlet weak var forecastCollectionView: UICollectionView! {
         didSet {
-            forecastCollectionView.register(UINib(nibName: String(describing: ForecastCollectionViewCell.self), bundle: nil), forCellWithReuseIdentifier: ForecastCollectionViewCell.reuseIdentifier)
+            forecastCollectionView.register(UINib(nibName: String(describing: ForecastCollectionViewCell.self),
+                                                  bundle: nil), forCellWithReuseIdentifier: ForecastCollectionViewCell.reuseIdentifier)
         }
     }
     
@@ -39,6 +41,7 @@ class WeatherViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         weatherManager.delegate = self
+        
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
         
@@ -63,7 +66,8 @@ class WeatherViewController: UIViewController {
 }
 
 //MARK: - TableView Delegate & DataSource
-extension WeatherViewController: UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegateFlowLayout {
+extension WeatherViewController: UITableViewDelegate, UITableViewDataSource {
+   
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let data = weatherModel?.data else { return 1 }
         return data.count
@@ -91,7 +95,7 @@ extension WeatherViewController: UITableViewDelegate, UITableViewDataSource, UIC
 }
 
 //MARK: - CollectionView Delegate & DataSource, FlowLayout
-extension WeatherViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension WeatherViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         guard let data = weatherModel?.data else { return 1 }
@@ -103,9 +107,9 @@ extension WeatherViewController: UICollectionViewDelegate, UICollectionViewDataS
         
         if let data = weatherModel?.data[indexPath.row]  {
             cell.configure(dateString: data.formattedFullDate,
-                           windString: "Wind speed: \(data.windSpeed) m/s",
-                           pressureString: "Pressure: \(data.pressure) mb",
-                           cloudString: "Cloud coverage: \(data.cloudsCoverage)%")
+                           windString: String.localizedStringWithFormat(NSLocalizedString("wind.speed", comment: ""), String(data.windSpeed)),
+                           pressureString: String.localizedStringWithFormat(NSLocalizedString("pressure", comment: ""), String(data.pressure)),
+                           cloudString: String.localizedStringWithFormat(NSLocalizedString("cloud.cover", comment: ""), String(data.cloudsCoverage)))
         }
         return cell
     }
@@ -117,13 +121,11 @@ extension WeatherViewController: UICollectionViewDelegate, UICollectionViewDataS
 
 //MARK: - CLLocationManagerDelegate
 
-
 extension WeatherViewController: CLLocationManagerDelegate {
     
     @IBAction func locationPressed(_ sender: UIButton) {
         locationManager.requestLocation()
     }
-    
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.last {
@@ -135,7 +137,7 @@ extension WeatherViewController: CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print(error)
+        print(error.localizedDescription)
     }
 }
 
@@ -171,7 +173,6 @@ extension WeatherViewController: UITextFieldDelegate {
     }
 }
 //MARK: - WeatherManagerDelegate
-
 
 extension WeatherViewController: WeatherManagerDelegate {
     

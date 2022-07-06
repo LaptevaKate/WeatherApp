@@ -14,7 +14,7 @@ extension Date {
     
     func monthName() -> String {
         let df = DateFormatter()
-        df.locale = Locale(identifier: "en_US_POSIX")
+        df.locale = Locale(identifier: Locale.preferredLanguages.first ?? "en_US_POSIX")
         df.setLocalizedDateFormatFromTemplate("MMM")
         return df.string(from: self)
     }

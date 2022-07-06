@@ -1,0 +1,12 @@
+
+/* Class = "UILabel"; text = "Cloud coverage( %)"; ObjectID = "9a4-O6-jnm"; */
+"9a4-O6-jnm.text" = "Cloud coverage( %)";
+
+/* Class = "UILabel"; text = "Pressure (mb)"; ObjectID = "HvQ-7a-PON"; */
+"HvQ-7a-PON.text" = "Pressure (mb)";
+
+/* Class = "UILabel"; text = "Date"; ObjectID = "WaE-ZF-FNw"; */
+"WaE-ZF-FNw.text" = "Date";
+
+/* Class = "UILabel"; text = "Wind speed(m/s)"; ObjectID = "frf-TA-dxC"; */
+"frf-TA-dxC.text" = "Wind speed(m/s)";

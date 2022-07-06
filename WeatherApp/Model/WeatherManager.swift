@@ -16,16 +16,17 @@ protocol WeatherManagerDelegate {
 struct WeatherManager {
     let weatherURL = "https://api.weatherbit.io/v2.0/forecast/daily?city="
     let apiKey = "b8b323ffae2149b186d164885fa8e4c0"
+    let language = Locale.current.languageCode ?? "en"
     
     var delegate: WeatherManagerDelegate?
     
     func fetchWeather(cityName: String) {
-        let urlString = "\(weatherURL)\(cityName)&key=\(apiKey)"
+        let urlString = "\(weatherURL)\(cityName)&key=\(apiKey)&lang=\(language)"
         performRequest(with: urlString)
     }
     
     func fetchWeather(latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
-        let urlString = "\(weatherURL)&lat=\(latitude)&lon=\(longitude)&key=\(apiKey)"
+        let urlString = "\(weatherURL)&lat=\(latitude)&lon=\(longitude)&key=\(apiKey)&lang=\(language)"
         performRequest(with: urlString)
     }
     
@@ -51,9 +52,7 @@ struct WeatherManager {
         let decoder = JSONDecoder()
         do {
             let decodedData = try decoder.decode(WeatherModel.self, from: weatherData)
-          
             return decodedData
-            
         } catch {
             delegate?.didFailWithError(error: error)
             return nil

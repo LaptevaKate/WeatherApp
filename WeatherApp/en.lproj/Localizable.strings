@@ -1,0 +1,11 @@
+/* 
+  Localizable.strings
+  WeatherApp
+
+  Created by Екатерина Лаптева on 5.07.22.
+  
+*/
+
+"wind.speed" = "Wind speed: %@ m/s";
+"pressure" = "Pressure: %@ mb";
+"cloud.cover" = "Cloud coverage: %@ %";
