@@ -109,13 +109,13 @@ extension WeatherViewController: UICollectionViewDelegate, UICollectionViewDataS
             cell.configure(dateString: data.formattedFullDate,
                            windString: String.localizedStringWithFormat(NSLocalizedString("wind.speed", comment: ""), String(data.windSpeed)),
                            pressureString: String.localizedStringWithFormat(NSLocalizedString("pressure", comment: ""), String(data.pressure)),
-                           cloudString: String.localizedStringWithFormat(NSLocalizedString("cloud.cover", comment: ""), String(data.cloudsCoverage)))
+                           cloudString: String.localizedStringWithFormat(NSLocalizedString("cloud.coverage", comment: ""), String(data.cloudsCoverage)))
         }
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 150, height: 100)
+        return CGSize(width: 170, height: 100)
     }
 }
 
@@ -184,7 +184,7 @@ extension WeatherViewController: WeatherManagerDelegate {
             
             self.cityLabel.text = weather.cityName
             self.temperatureLabel.text = weather.data[1].temperatureString
-            self.probabilityOfPrecipitationLabel.text = "Probability Of Precipitation \( weather.data[5].precipitationString) %"
+            self.probabilityOfPrecipitationLabel.text = String.localizedStringWithFormat(NSLocalizedString("precipitation", comment: ""), String(weather.data[5].precipitationString))
         }
     }
     

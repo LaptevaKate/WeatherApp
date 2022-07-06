@@ -8,4 +8,5 @@
 
 "wind.speed" = "Wind speed: %@ m/s";
 "pressure" = "Pressure: %@ mb";
-"cloud.cover" = "Cloud coverage: %@ %";
+"cloud.coverage" = "Cloud coverage: %@ ";
+"precipitation" = "Probability Of Precipitation %@ ";
