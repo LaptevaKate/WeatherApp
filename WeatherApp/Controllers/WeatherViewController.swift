@@ -86,11 +86,21 @@ extension WeatherViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 64
+        return 72
     }
     
-    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-        return nil
+//    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+//        return nil
+//    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let nameController = String(describing: DailyWeatherViewController.self)
+        let viewController = storyboard.instantiateViewController(withIdentifier: nameController) as! DailyWeatherViewController
+        viewController.modalPresentationStyle = .fullScreen
+        viewController.weather = weatherModel?.data[indexPath.row]
+        viewController.city = weatherModel?.cityName
+        navigationController?.pushViewController(viewController, animated: true)
     }
 }
 

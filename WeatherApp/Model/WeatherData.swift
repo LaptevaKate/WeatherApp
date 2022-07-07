@@ -24,6 +24,10 @@ struct WeatherData: Codable {
     let pressure: Double
     let cloudsCoverage: Int
     let precipitation: Int
+    let visibility: Double
+    let maxTemp: Double
+    let minTemp: Double
+    let uv: Double
     let weather: Weather
     
     enum CodingKeys: String, CodingKey {
@@ -32,6 +36,10 @@ struct WeatherData: Codable {
         case windSpeed = "wind_spd"
         case pressure = "pres"
         case cloudsCoverage = "clouds"
+        case visibility = "vis"
+        case maxTemp = "max_temp"
+        case minTemp = "min_temp"
+        case uv = "uv"
         case precipitation = "pop"
         case weather
     }

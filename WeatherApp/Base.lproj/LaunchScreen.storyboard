@@ -41,10 +41,10 @@
                             <constraint firstAttribute="bottom" secondItem="YXe-bm-8QU" secondAttribute="bottom" id="BZR-Da-660"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="9lU-qF-3hf" secondAttribute="bottom" constant="40" id="EzI-Nu-LOg"/>
                             <constraint firstItem="9lU-qF-3hf" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="Fbs-tI-ZOH"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="YXe-bm-8QU" secondAttribute="trailing" id="TuP-hy-vv2"/>
+                            <constraint firstAttribute="trailing" secondItem="YXe-bm-8QU" secondAttribute="trailing" id="TuP-hy-vv2"/>
                             <constraint firstItem="AJo-Si-fot" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="50" id="Ucq-Fb-Xiz"/>
                             <constraint firstItem="YXe-bm-8QU" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="V3t-M8-CRK"/>
-                            <constraint firstItem="YXe-bm-8QU" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Vx0-Yf-2y3"/>
+                            <constraint firstItem="YXe-bm-8QU" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="Vx0-Yf-2y3"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="AJo-Si-fot" secondAttribute="trailing" constant="20" id="aP5-Kb-H36"/>
                             <constraint firstItem="AJo-Si-fot" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="qpP-df-kcD"/>
                         </constraints>
