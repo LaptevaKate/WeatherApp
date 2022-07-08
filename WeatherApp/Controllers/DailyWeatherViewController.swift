@@ -19,8 +19,11 @@ class DailyWeatherViewController: UIViewController {
     @IBOutlet weak var maxDegreesLabel: UILabel!
     @IBOutlet weak var minTempLabel: UILabel!
     @IBOutlet weak var minDigreesLabel: UILabel!
+    @IBOutlet weak var termometrUIImageView: UIImageView!
+    @IBOutlet weak var backButton: UIButton!
     
-    // MARK: - Private properties
+    
+    // MARK: - Properties
     
     var weather: WeatherData?
     var city: String?
@@ -35,13 +38,23 @@ class DailyWeatherViewController: UIViewController {
         
         maxTempLabel.text = NSLocalizedString("max.temp", comment: "")
         minTempLabel.text = NSLocalizedString("min.temp", comment: "")
+        backButton.setTitle(NSLocalizedString("back.button", comment: ""), for: .normal)
         
         showForecast(for: index)
+
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        UIView.animate(withDuration: 3, delay: 0.0, options: [], animations: {
+            self.termometrUIImageView.transform = self.termometrUIImageView.transform.rotated(by: .pi)
+            self.termometrUIImageView.transform = self.termometrUIImageView.transform.rotated(by: .pi)
+        }, completion: nil)
+    }
+    
     
     // MARK: - Private Methods
     
-    func showForecast(for index: Int) {
+    private func showForecast(for index: Int) {
         if (index > -1) && (index < weather?.day ?? 0) {
             let dateFormetter = DateFormatter()
             dateFormetter.dateFormat = "yyyy-MM-dd"

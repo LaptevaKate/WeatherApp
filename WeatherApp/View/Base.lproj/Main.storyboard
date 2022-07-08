@@ -370,12 +370,14 @@
                     </view>
                     <navigationItem key="navigationItem" id="Tdm-nE-k2J"/>
                     <connections>
+                        <outlet property="backButton" destination="cW7-UV-CnK" id="32F-xU-0xh"/>
                         <outlet property="cityNameLabel" destination="azh-m0-l7r" id="HCz-ka-PfO"/>
                         <outlet property="dateLabel" destination="bgB-Jm-Z3z" id="YkD-pb-EQi"/>
                         <outlet property="maxDegreesLabel" destination="80V-VG-cBr" id="kf8-NL-EhV"/>
                         <outlet property="maxTempLabel" destination="grA-g5-3NC" id="qH0-27-WkJ"/>
                         <outlet property="minDigreesLabel" destination="g6b-3b-1uf" id="PnX-YL-GZm"/>
                         <outlet property="minTempLabel" destination="37k-JO-uEv" id="Cgr-ZJ-i33"/>
+                        <outlet property="termometrUIImageView" destination="idL-FJ-deL" id="XvL-5C-FUa"/>
                         <outlet property="uvLabel" destination="LHW-d8-KLu" id="y3O-cP-dxg"/>
                         <outlet property="visibilityLabel" destination="QT1-3G-Mff" id="u58-wb-a58"/>
                     </connections>

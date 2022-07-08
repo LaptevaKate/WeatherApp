@@ -14,3 +14,4 @@
 "uv" = "UV %@ Index";
 "max.temp" = "Max Temperature";
 "min.temp" = "Min Temperature";
+"back.button" = "BACK";
