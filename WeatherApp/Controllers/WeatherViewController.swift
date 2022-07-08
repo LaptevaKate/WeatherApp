@@ -12,6 +12,8 @@ import CoreLocation
 
 class WeatherViewController: UIViewController {
     
+    // MARK: - IBOutlets
+    
     @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var probabilityOfPrecipitationLabel: UILabel!
@@ -32,11 +34,14 @@ class WeatherViewController: UIViewController {
         }
     }
     
+    // MARK: - Private properties
+    
     let locationManager = CLLocationManager()
     
     var weatherManager = WeatherManager()
     var weatherModel: WeatherModel?
     
+    // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,13 +66,34 @@ class WeatherViewController: UIViewController {
         forecastCollectionView.delegate = self
         
         searchTextField.delegate = self
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
+        mapView.addGestureRecognizer(tapGesture)
         
     }
+    
+    @objc func handleTap(gestureReconizer: UITapGestureRecognizer) {
+        
+        let location = gestureReconizer.location(in: mapView)
+        let coordinate = mapView.convert(location,toCoordinateFrom: mapView)
+        
+        // Add annotation:
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = coordinate
+        mapView.annotations.forEach { annotation in
+            mapView.removeAnnotation(annotation)
+        }
+        mapView.removeAnnotation(mapView.annotations.first!)
+        mapView.addAnnotation(annotation)
+        mapView.isUserInteractionEnabled = false
+        weatherManager.fetchWeather(latitude: coordinate.latitude, longitude: coordinate.longitude)
+    }
+    
 }
 
 //MARK: - TableView Delegate & DataSource
+
 extension WeatherViewController: UITableViewDelegate, UITableViewDataSource {
-   
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let data = weatherModel?.data else { return 1 }
         return data.count
@@ -89,10 +115,6 @@ extension WeatherViewController: UITableViewDelegate, UITableViewDataSource {
         return 72
     }
     
-//    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-//        return nil
-//    }
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let nameController = String(describing: DailyWeatherViewController.self)
@@ -105,6 +127,7 @@ extension WeatherViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 //MARK: - CollectionView Delegate & DataSource, FlowLayout
+
 extension WeatherViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -151,7 +174,6 @@ extension WeatherViewController: CLLocationManagerDelegate {
     }
 }
 
-
 //MARK: - UITextFieldDelegate
 
 extension WeatherViewController: UITextFieldDelegate {
@@ -191,14 +213,16 @@ extension WeatherViewController: WeatherManagerDelegate {
             self.weatherModel = weather
             self.dailyForecastTableView.reloadData()
             self.forecastCollectionView.reloadData()
-            
+
             self.cityLabel.text = weather.cityName
             self.temperatureLabel.text = weather.data[1].temperatureString
             self.probabilityOfPrecipitationLabel.text = String.localizedStringWithFormat(NSLocalizedString("precipitation", comment: ""), String(weather.data[5].precipitationString))
+            self.mapView.isUserInteractionEnabled = true
         }
     }
     
     func didFailWithError(error: Error) {
         print(error.localizedDescription)
+        mapView.isUserInteractionEnabled = true
     }
 }

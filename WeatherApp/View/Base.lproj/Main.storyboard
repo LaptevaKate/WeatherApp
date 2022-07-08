@@ -46,7 +46,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="4Nd-gn-m1v">
-                                                    <rect key="frame" x="0.0" y="40" width="414" height="896"/>
+                                                    <rect key="frame" x="0.0" y="40" width="414" height="988.5"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="sOy-oI-cxW">
                                                             <rect key="frame" x="10" y="0.0" width="394" height="40"/>
@@ -115,7 +115,7 @@
                                                             </subviews>
                                                         </stackView>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S0H-X0-ttI">
-                                                            <rect key="frame" x="20" y="218.5" width="374" height="677.5"/>
+                                                            <rect key="frame" x="20" y="218.5" width="374" height="770"/>
                                                             <subviews>
                                                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="UZG-zN-3Zd">
                                                                     <rect key="frame" x="0.0" y="0.0" width="374" height="100"/>
@@ -132,13 +132,16 @@
                                                                     <cells/>
                                                                 </collectionView>
                                                                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="QvU-Zx-4WG">
-                                                                    <rect key="frame" x="0.0" y="110" width="374" height="396"/>
+                                                                    <rect key="frame" x="0.0" y="110" width="374" height="400"/>
                                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                </tableView>
-                                                                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="gLH-Oo-7P5">
-                                                                    <rect key="frame" x="0.0" y="516" width="374" height="120"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="height" constant="120" id="yje-OL-qfd"/>
+                                                                        <constraint firstAttribute="height" constant="400" id="Rag-Bv-0gl"/>
+                                                                    </constraints>
+                                                                </tableView>
+                                                                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" pitchEnabled="NO" showsUserLocation="YES" showsPointsOfInterest="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gLH-Oo-7P5">
+                                                                    <rect key="frame" x="0.0" y="520" width="374" height="200"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="200" id="yje-OL-qfd"/>
                                                                     </constraints>
                                                                 </mapView>
                                                             </subviews>
@@ -147,7 +150,7 @@
                                                                 <constraint firstItem="QvU-Zx-4WG" firstAttribute="top" secondItem="UZG-zN-3Zd" secondAttribute="bottom" constant="10" id="7v4-Ru-uhO"/>
                                                                 <constraint firstAttribute="trailing" secondItem="QvU-Zx-4WG" secondAttribute="trailing" id="ETV-tS-fCe"/>
                                                                 <constraint firstAttribute="trailing" secondItem="gLH-Oo-7P5" secondAttribute="trailing" id="S9b-Ds-hpG"/>
-                                                                <constraint firstAttribute="bottom" secondItem="gLH-Oo-7P5" secondAttribute="bottom" constant="41.5" id="UFx-ta-GVL"/>
+                                                                <constraint firstAttribute="bottom" secondItem="gLH-Oo-7P5" secondAttribute="bottom" constant="50" id="UFx-ta-GVL"/>
                                                                 <constraint firstItem="gLH-Oo-7P5" firstAttribute="top" secondItem="QvU-Zx-4WG" secondAttribute="bottom" constant="10" id="aja-In-zII"/>
                                                                 <constraint firstItem="gLH-Oo-7P5" firstAttribute="leading" secondItem="S0H-X0-ttI" secondAttribute="leading" id="eYE-vB-Yry"/>
                                                                 <constraint firstItem="UZG-zN-3Zd" firstAttribute="top" secondItem="S0H-X0-ttI" secondAttribute="top" id="pxe-HW-8Be"/>
@@ -317,7 +320,7 @@
                                                         </imageView>
                                                     </subviews>
                                                 </stackView>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cW7-UV-CnK">
+                                                <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cW7-UV-CnK">
                                                     <rect key="frame" x="20" y="725" width="334" height="31"/>
                                                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
@@ -326,6 +329,11 @@
                                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <state key="normal" title="Button"/>
                                                     <buttonConfiguration key="configuration" style="plain" title="Back"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="10"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
                                                     <connections>
                                                         <action selector="backButtonTapped:" destination="jbO-H8-Kf6" eventType="touchUpInside" id="JuP-Xi-eZy"/>
                                                     </connections>

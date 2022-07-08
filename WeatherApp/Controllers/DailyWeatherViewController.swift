@@ -8,7 +8,9 @@
 import UIKit
 
 class DailyWeatherViewController: UIViewController {
-
+    
+    // MARK: - IBOutlets
+    
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var cityNameLabel: UILabel!
     @IBOutlet weak var visibilityLabel: UILabel!
@@ -18,9 +20,13 @@ class DailyWeatherViewController: UIViewController {
     @IBOutlet weak var minTempLabel: UILabel!
     @IBOutlet weak var minDigreesLabel: UILabel!
     
+    // MARK: - Private properties
+    
     var weather: WeatherData?
     var city: String?
     var index = 0
+    
+    // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,8 +37,9 @@ class DailyWeatherViewController: UIViewController {
         minTempLabel.text = NSLocalizedString("min.temp", comment: "")
         
         showForecast(for: index)
-
     }
+    
+    // MARK: - Private Methods
     
     func showForecast(for index: Int) {
         if (index > -1) && (index < weather?.day ?? 0) {
@@ -60,7 +67,8 @@ class DailyWeatherViewController: UIViewController {
         }
     }
 
-   
+    // MARK: - IBActions
+    
     @IBAction func backButtonTapped(_ sender: Any) {
         navigationController?.popViewController(animated: true)
     }
