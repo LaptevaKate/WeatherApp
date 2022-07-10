@@ -15,3 +15,8 @@
 "max.temp" = "Max Temperature";
 "min.temp" = "Min Temperature";
 "back.button" = "BACK";
+"saving.cities" = "Saving cities";
+"add.citiesName" = "Add your favourite city Name";
+"cancel" = "cancel";
+"ок" = "ok";
+"city.name" = "City Name";

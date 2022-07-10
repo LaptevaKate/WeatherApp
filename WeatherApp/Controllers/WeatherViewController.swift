@@ -10,7 +10,7 @@ import MapKit
 import CoreLocation
 
 
-class WeatherViewController: UIViewController {
+final class WeatherViewController: BaseViewController {
     
     // MARK: - IBOutlets
     
@@ -88,6 +88,13 @@ class WeatherViewController: UIViewController {
         weatherManager.fetchWeather(latitude: coordinate.latitude, longitude: coordinate.longitude)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "FaivoriteVC" {
+            let controller = segue.destination as! FavouriteCitiesViewController
+            controller.delegate = self
+        }
+    }
+    
 }
 
 //MARK: - TableView Delegate & DataSource
@@ -152,6 +159,8 @@ extension WeatherViewController: UICollectionViewDelegate, UICollectionViewDataS
     }
 }
 
+
+
 //MARK: - CLLocationManagerDelegate
 
 extension WeatherViewController: CLLocationManagerDelegate {
@@ -166,6 +175,7 @@ extension WeatherViewController: CLLocationManagerDelegate {
             let lat = location.coordinate.latitude
             let lon = location.coordinate.longitude
             weatherManager.fetchWeather(latitude: lat, longitude: lon)
+            mapView.setCenter(location.coordinate, animated: true)
         }
     }
     
@@ -187,18 +197,9 @@ extension WeatherViewController: UITextFieldDelegate {
         return true
     }
     
-    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-        if textField.text != "" {
-            return true
-        } else {
-            textField.placeholder = "Enter any city Name"
-            return false
-        }
-    }
-    
     func textFieldDidEndEditing(_ textField: UITextField) {
         
-        if let city = searchTextField.text {
+        if let city = searchTextField.text?.trimmingCharacters(in: .whitespaces), !city.isEmpty {
             weatherManager.fetchWeather(cityName: city)
         }
         searchTextField.text = ""
@@ -224,5 +225,12 @@ extension WeatherViewController: WeatherManagerDelegate {
     func didFailWithError(error: Error) {
         print(error.localizedDescription)
         mapView.isUserInteractionEnabled = true
+    }
+}
+
+extension WeatherViewController: FavouriteCitiesViewControllerDelegate {
+    func didSelectCity(city: String) {
+        weatherManager.fetchWeather(cityName: city)
+        navigationController?.popViewController(animated: true)
     }
 }

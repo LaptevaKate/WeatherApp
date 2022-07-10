@@ -14,6 +14,9 @@
 		5E3F5AF42862421E00C1EEBD /* WeatherData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E3F5AF32862421E00C1EEBD /* WeatherData.swift */; };
 		5E45FB652876F0DF0090B1D1 /* DailyWeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E45FB642876F0DF0090B1D1 /* DailyWeatherViewController.swift */; };
 		5E7BB67F2864E745006BDCD6 /* WeatherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7BB67E2864E745006BDCD6 /* WeatherManager.swift */; };
+		5E82DAEA28798F6F00A1C51E /* FavouriteCitiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E82DAE928798F6E00A1C51E /* FavouriteCitiesViewController.swift */; };
+		5E82DAF6287AE27500A1C51E /* SaveFavouriteCities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E82DAF5287AE27500A1C51E /* SaveFavouriteCities.swift */; };
+		5E82DAFE287B4F9200A1C51E /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E82DAFD287B4F9200A1C51E /* BaseViewController.swift */; };
 		5EA36E382874C5C2006DB704 /* ForecastCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EA36E3A2874C5C2006DB704 /* ForecastCollectionViewCell.xib */; };
 		5EA36E3F2874C5E9006DB704 /* DaysTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EA36E412874C5E9006DB704 /* DaysTableViewCell.xib */; };
 		5EA36E482874D298006DB704 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5EA36E4A2874D298006DB704 /* Localizable.strings */; };
@@ -33,6 +36,9 @@
 		5E3F5AF32862421E00C1EEBD /* WeatherData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherData.swift; sourceTree = "<group>"; };
 		5E45FB642876F0DF0090B1D1 /* DailyWeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyWeatherViewController.swift; sourceTree = "<group>"; };
 		5E7BB67E2864E745006BDCD6 /* WeatherManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherManager.swift; sourceTree = "<group>"; };
+		5E82DAE928798F6E00A1C51E /* FavouriteCitiesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteCitiesViewController.swift; sourceTree = "<group>"; };
+		5E82DAF5287AE27500A1C51E /* SaveFavouriteCities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveFavouriteCities.swift; sourceTree = "<group>"; };
+		5E82DAFD287B4F9200A1C51E /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		5EA36E362874C562006DB704 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		5EA36E492874D298006DB704 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		5EA36E4B2874D2A0006DB704 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -89,6 +95,7 @@
 			isa = PBXGroup;
 			children = (
 				5EE2463928575CAF001ACB21 /* WeatherViewController.swift */,
+				5E82DAE928798F6E00A1C51E /* FavouriteCitiesViewController.swift */,
 				5E45FB642876F0DF0090B1D1 /* DailyWeatherViewController.swift */,
 				5E3F5AEB2861FA6800C1EEBD /* ForecastCollectionViewCell */,
 				5E3F5AEA2861FA1100C1EEBD /* DaysTableViewCell */,
@@ -119,8 +126,17 @@
 			children = (
 				5EE2463528575CAF001ACB21 /* AppDelegate.swift */,
 				5EE2463728575CAF001ACB21 /* SceneDelegate.swift */,
+				5E82DAFD287B4F9200A1C51E /* BaseViewController.swift */,
 			);
 			path = "Default Classes";
+			sourceTree = "<group>";
+		};
+		5E82DAF4287AE23800A1C51E /* SaveSettings */ = {
+			isa = PBXGroup;
+			children = (
+				5E82DAF5287AE27500A1C51E /* SaveFavouriteCities.swift */,
+			);
+			path = SaveSettings;
 			sourceTree = "<group>";
 		};
 		5EE2462928575CAF001ACB21 = {
@@ -142,6 +158,7 @@
 		5EE2463428575CAF001ACB21 /* WeatherApp */ = {
 			isa = PBXGroup;
 			children = (
+				5E82DAF4287AE23800A1C51E /* SaveSettings */,
 				5E0D7FF72868A59900B7BC70 /* Extensions */,
 				5E3F5AF22862308200C1EEBD /* Default Classes */,
 				5E0E7E54285F3C1500C8F82A /* Model */,
@@ -171,6 +188,8 @@
 			dependencies = (
 			);
 			name = WeatherApp;
+			packageProductDependencies = (
+			);
 			productName = WeatherApp;
 			productReference = 5EE2463228575CAF001ACB21 /* WeatherApp.app */;
 			productType = "com.apple.product-type.application";
@@ -200,6 +219,8 @@
 				ru,
 			);
 			mainGroup = 5EE2462928575CAF001ACB21;
+			packageReferences = (
+			);
 			productRefGroup = 5EE2463328575CAF001ACB21 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -230,10 +251,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E82DAFE287B4F9200A1C51E /* BaseViewController.swift in Sources */,
+				5E82DAEA28798F6F00A1C51E /* FavouriteCitiesViewController.swift in Sources */,
 				5E0D7FF62868A14C00B7BC70 /* DateFormatter.swift in Sources */,
 				5EE2463A28575CAF001ACB21 /* WeatherViewController.swift in Sources */,
 				5E0E7E572861D9C000C8F82A /* DaysTableViewCell.swift in Sources */,
 				5E45FB652876F0DF0090B1D1 /* DailyWeatherViewController.swift in Sources */,
+				5E82DAF6287AE27500A1C51E /* SaveFavouriteCities.swift in Sources */,
 				5E3F5AF42862421E00C1EEBD /* WeatherData.swift in Sources */,
 				5E0D7FF42868A09C00B7BC70 /* Date.swift in Sources */,
 				5E7BB67F2864E745006BDCD6 /* WeatherManager.swift in Sources */,

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DailyWeatherViewController: UIViewController {
+final class DailyWeatherViewController: BaseViewController {
     
     // MARK: - IBOutlets
     
@@ -34,7 +34,7 @@ class DailyWeatherViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationController?.setNavigationBarHidden(true, animated: false)
+        navigationItem.hidesBackButton = true
         
         maxTempLabel.text = NSLocalizedString("max.temp", comment: "")
         minTempLabel.text = NSLocalizedString("min.temp", comment: "")
