@@ -82,7 +82,7 @@ final class WeatherViewController: BaseViewController {
         mapView.annotations.forEach { annotation in
             mapView.removeAnnotation(annotation)
         }
-        mapView.removeAnnotation(mapView.annotations.first!)
+        mapView.removeAnnotations(mapView.annotations)
         mapView.addAnnotation(annotation)
         mapView.isUserInteractionEnabled = false
         weatherManager.fetchWeather(latitude: coordinate.latitude, longitude: coordinate.longitude)
